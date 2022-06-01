@@ -1,16 +1,16 @@
-export type complaint = {
+export type Complaint = {
   target: string;
   type: string;
   description: string;
 };
 
-export type complaintRaw = {
+export type ComplaintRaw = {
   target: string;
   type: string;
   description: string;
 };
 
-export function mapComplaint(data: complaint): complaintRaw {
+export function mapComplaint(data: Complaint): ComplaintRaw {
   return {
     target: data.target,
     type: data.target,
@@ -18,7 +18,7 @@ export function mapComplaint(data: complaint): complaintRaw {
   };
 }
 
-export function mapComplaintRaw(data: complaintRaw): complaint {
+export function mapComplaintRaw(data: ComplaintRaw): Complaint {
   return {
     target: data.target ? data.target : null,
     type: data.target ? data.target : null,
