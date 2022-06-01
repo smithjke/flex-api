@@ -12,7 +12,7 @@ export type CityRaw = {
   countryEmoji: string;
 };
 
-export function mapCity(data: City): CityRaw {
+export function mapCity(data: Partial<City>): CityRaw {
   return {
     id: data.id,
     title: data.title,

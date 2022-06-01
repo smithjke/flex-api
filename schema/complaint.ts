@@ -10,7 +10,7 @@ export type ComplaintRaw = {
   description: string;
 };
 
-export function mapComplaint(data: Complaint): ComplaintRaw {
+export function mapComplaint(data: Partial<Complaint>): ComplaintRaw {
   return {
     target: data.target,
     type: data.target,

@@ -10,7 +10,7 @@ export type CountryRaw = {
   emoji: string;
 };
 
-export function mapCountry(data: Country): CountryRaw {
+export function mapCountry(data: Partial<Country>): CountryRaw {
   return {
     id: data.id,
     title: data.title,
