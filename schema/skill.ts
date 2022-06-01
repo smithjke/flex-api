@@ -8,7 +8,7 @@ export type SkillRaw = {
   title: string;
 };
 
-export function mapSkill(data: Skill): SkillRaw {
+export function mapSkill(data: Partial<Skill>): SkillRaw {
   return {
     id: data.id,
     title: data.title
