@@ -1,4 +1,4 @@
-export type HightEducations = {
+export type HightEducation = {
   id: string;
   hei: string;
   faculty: string;
@@ -7,7 +7,7 @@ export type HightEducations = {
   endDate: Date;
 };
 
-export type HightEducationsRaw = {
+export type HightEducationRaw = {
   id: string;
   hei: string;
   faculty: string;
@@ -16,7 +16,7 @@ export type HightEducationsRaw = {
   endDate: string;
 };
 
-export function mapHightEducations(data: Partial<HightEducations>): HightEducationsRaw {
+export function mapHightEducation(data: Partial<HightEducation>): HightEducationRaw {
   return {
     id: data.id,
     hei: data.hei,
@@ -27,12 +27,12 @@ export function mapHightEducations(data: Partial<HightEducations>): HightEducati
   };
 }
 
-export function mapHightEducationsRaw(dataRaw: HightEducationsRaw): HightEducations {
+export function mapHightEducationRaw(dataRaw: HightEducationRaw): HightEducation {
   return {
-    id: dataRaw.id ? dataRaw.id : null,
-    hei: dataRaw.hei ? dataRaw.hei : null,
-    faculty: dataRaw.faculty ? dataRaw.faculty : null,
-    achievements: dataRaw.achievements ? dataRaw.achievements : null,
+    id: dataRaw.id ? String(dataRaw.id) : null,
+    hei: dataRaw.hei ? String(dataRaw.hei) : null,
+    faculty: dataRaw.faculty ? String(dataRaw.faculty) : null,
+    achievements: dataRaw.achievements ? String(dataRaw.achievements) : null,
     startDate: dataRaw.startDate ? new Date(dataRaw.startDate) : null,
     endDate: dataRaw.endDate ? new Date(dataRaw.endDate) : null,
   };
