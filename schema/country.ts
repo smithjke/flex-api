@@ -22,6 +22,6 @@ export function mapCountryRaw(data: CountryRaw): Country {
   return {
     id: data.id ? String(data.id) : null,
     title: data.title ? String(data.title) : null,
-    emoji: data.emoji ? String(data.emoji): null,
+    emoji: data.emoji ? String(data.emoji) : null,
   };
 }
