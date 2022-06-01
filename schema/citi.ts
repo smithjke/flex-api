@@ -1,18 +1,18 @@
-export type Citi = {
+export type City = {
   id: string;
   title: string;
   timezone: number;
   countryEmoji: string;
 }
 
-export type CitiRaw = {
+export type CityRaw = {
   id: string;
   title: string;
   timezone: number;
   country_emoji: string;
 }
 
-export function mapCiti (data:Citi) {
+export function mapCity(data: City) {
   return {
     id: data.id,
     title: data.title,
@@ -21,11 +21,11 @@ export function mapCiti (data:Citi) {
   }
 }
 
-export function mapCitiRaw (data:CitiRaw) {
+export function mapCityRaw(data: CityRaw) {
   return {
-    id: data.id,
-    title: data.title,
-    timezone: data.timezone,
-    countryEmoji: data.country_emoji,
+    id: data.id ?  data.id : null,
+    title: data.title ? data.title : null,
+    timezone: data.timezone ? data.timezone : null,
+    countryEmoji: data.country_emoji ? data.country_emoji : null,
   }
 }
