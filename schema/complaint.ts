@@ -20,8 +20,8 @@ export function mapComplaint(data: Complaint): ComplaintRaw {
 
 export function mapComplaintRaw(data: ComplaintRaw): Complaint {
   return {
-    target: data.target ? data.target : null,
-    type: data.target ? data.target : null,
-    description: data.target ? data.target : null,
+    target: data.target ? String(data.target) : null,
+    type: data.target ? String(data.target) : null,
+    description: data.target ? String(data.target) : null,
   };
 }

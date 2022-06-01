@@ -12,7 +12,7 @@ export type CityRaw = {
   countryEmoji: string;
 };
 
-export function mapCity(data: City) {
+export function mapCity(data: City): CityRaw {
   return {
     id: data.id,
     title: data.title,
@@ -21,11 +21,11 @@ export function mapCity(data: City) {
   };
 }
 
-export function mapCityRaw(data: CityRaw) {
+export function mapCityRaw(data: CityRaw): City {
   return {
-    id: data.id ? data.id : null,
-    title: data.title ? data.title : null,
-    timezone: data.timezone ? data.timezone : null,
-    countryEmoji: data.countryEmoji ? data.countryEmoji : null,
+    id: data.id ? String(data.id) : null,
+    title: data.title ? String(data.title) : null,
+    timezone: data.timezone ? Number(data.timezone) : null,
+    countryEmoji: data.countryEmoji ? String(data.countryEmoji) : null,
   };
 }
