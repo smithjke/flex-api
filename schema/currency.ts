@@ -18,10 +18,10 @@ export function mapCurrency(data: Partial<Currency>): CurrencyRaw {
   };
 }
 
-export function mapCurrencyRaw(data: Currency): CurrencyRaw {
+export function mapCurrencyRaw(dataRaw: CurrencyRaw): Currency {
   return {
-    id: data.id ? String(data.id) : null,
-    title: data.title ? String(data.title) : null,
-    sign: data.sign ? String(data.sign) : null,
+    id: dataRaw.id ? String(dataRaw.id) : null,
+    title: dataRaw.title ? String(dataRaw.title) : null,
+    sign: dataRaw.sign ? String(dataRaw.sign) : null,
   };
 }
