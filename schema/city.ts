@@ -3,14 +3,14 @@ export type City = {
   title: string;
   timezone: number;
   countryEmoji: string;
-}
+};
 
 export type CityRaw = {
   id: string;
   title: string;
   timezone: number;
   country_emoji: string;
-}
+};
 
 export function mapCity(data: City) {
   return {
@@ -18,7 +18,7 @@ export function mapCity(data: City) {
     title: data.title,
     timezone: data.timezone,
     country_emoji: data.countryEmoji,
-  }
+  };
 }
 
 export function mapCityRaw(data: CityRaw) {
@@ -27,5 +27,5 @@ export function mapCityRaw(data: CityRaw) {
     title: data.title ? data.title : null,
     timezone: data.timezone ? data.timezone : null,
     countryEmoji: data.country_emoji ? data.country_emoji : null,
-  }
+  };
 }
