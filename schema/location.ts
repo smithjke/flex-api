@@ -24,12 +24,12 @@ export function mapLocationRaw(locationRaw: LocationRaw): Location {
   };
 }
 
-export function mapLocation(location: Location): LocationRaw {
+export function mapLocation(location: Partial<Location>): LocationRaw {
   return {
-    cityId: location.cityId ? String(location.cityId) : null,
-    cityTitle: location.cityTitle ? String(location.cityTitle) : null,
-    address: location.address ? String(location.address) : null,
-    email: location.email ? String(location.email) : null,
-    phone: location.phone ? String(location.phone) : null,
+    cityId: location?.cityId,
+    cityTitle: location?.cityTitle,
+    address: location?.address,
+    email: location?.email,
+    phone: location?.phone,
   };
 }

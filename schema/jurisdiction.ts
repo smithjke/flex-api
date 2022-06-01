@@ -18,10 +18,10 @@ export function mapJurisdictionRaw(jurisdictionRaw: JurisdictionRaw): Jurisdicti
   };
 }
 
-export function mapJurisdiction(jurisdiction: Jurisdiction): JurisdictionRaw {
+export function mapJurisdiction(jurisdiction: Partial<Jurisdiction>): JurisdictionRaw {
   return {
-    id: jurisdiction.id ? String(jurisdiction.id) : null,
-    title: jurisdiction.title ? String(jurisdiction.title) : null,
-    emoji: jurisdiction.emoji ? String(jurisdiction.emoji) : null,
+    id: jurisdiction?.id,
+    title: jurisdiction?.title,
+    emoji: jurisdiction?.emoji,
   };
 }

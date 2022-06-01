@@ -111,7 +111,7 @@ export function mapCatalogCompany(catalogCompany: Partial<CatalogCompany>): Cata
     currencies: null,
     taxationWithVAT: catalogCompany?.taxationWithVAT,
     taxationWithoutVAT: catalogCompany?.taxationWithoutVAT,
-    jurisdictions: catalogCompany?.jurisdictions,
+    jurisdictions: catalogCompany.jurisdictions ? catalogCompany.jurisdictions.map(mapJurisdiction) : undefined,
     interviewSteps: catalogCompany?.interviewSteps,
     calculationByAgreement: catalogCompany?.calculationByAgreement,
     billingPeriod: catalogCompany?.billingPeriod,
