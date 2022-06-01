@@ -13,19 +13,19 @@ export type CatalogCompany = {
   yearOfFoundation: number;
   description: string;
   isSearchingSpecialists: boolean;
-  speakingLanguages: PlaceholderType[];
+  speakingLanguages: Array<PlaceholderType>;
   isSellingSpecialists: boolean;
-  currencies: PlaceholderType[];
+  currencies: Array<PlaceholderType>;
   taxationWithVAT: boolean;
   taxationWithoutVAT: boolean;
-  jurisdictions: Jurisdiction[],
+  jurisdictions: Array<Jurisdiction>,
   interviewSteps: number;
   calculationByAgreement: boolean;
   billingPeriod: number;
   deferredPaymentByAgreement: boolean;
   defermentOfPayment: number;
   mainLocation: Location;
-  locations: Location[];
+  locations: Array<Location>;
   isVerified: boolean;
   sellingSpecialistsCount: number;
   searchingSpecialistsCount: number;
@@ -43,19 +43,19 @@ export type CatalogCompanyRaw = {
   yearOfFoundation: number;
   description: string;
   isSearchingSpecialists: boolean;
-  speakingLanguages: PlaceholderType[];
+  speakingLanguages: Array<PlaceholderType>;
   isSellingSpecialists: boolean;
-  currencies: PlaceholderType[];
+  currencies: Array<PlaceholderType>;
   taxationWithVAT: boolean;
   taxationWithoutVAT: boolean;
-  jurisdictions: JurisdictionRaw[],
+  jurisdictions: Array<JurisdictionRaw>,
   interviewSteps: number;
   calculationByAgreement: boolean;
   billingPeriod: number;
   deferredPaymentByAgreement: boolean;
   defermentOfPayment: number;
   mainLocation: LocationRaw;
-  locations: LocationRaw[];
+  locations: Array<LocationRaw>;
   isVerified: boolean;
   sellingSpecialistsCount: number;
   searchingSpecialistsCount: number;
@@ -68,7 +68,7 @@ export function mapCatalogCompanyRaw(catalogCompanyRaw: CatalogCompanyRaw): Cata
     createdAt: catalogCompanyRaw.createdAt ? new Date(catalogCompanyRaw.createdAt) : null,
     logo: catalogCompanyRaw.logo ? String(catalogCompanyRaw.logo) : null,
     title: catalogCompanyRaw.title ? String(catalogCompanyRaw.title) : null,
-    specialization: catalogCompanyRaw.title ? String(catalogCompanyRaw.title) : null,
+    specialization: catalogCompanyRaw.specialization ? String(catalogCompanyRaw.specialization) : null,
     website: catalogCompanyRaw.website ? String(catalogCompanyRaw.website) : null,
     companySize: catalogCompanyRaw.companySize ? Number(catalogCompanyRaw.companySize) : null,
     yearOfFoundation: catalogCompanyRaw.yearOfFoundation ? Number(catalogCompanyRaw.yearOfFoundation) : null,
@@ -79,14 +79,14 @@ export function mapCatalogCompanyRaw(catalogCompanyRaw: CatalogCompanyRaw): Cata
     currencies: null,
     taxationWithVAT: catalogCompanyRaw.taxationWithVAT ? Boolean(catalogCompanyRaw.taxationWithVAT) : null,
     taxationWithoutVAT: catalogCompanyRaw.taxationWithoutVAT ? Boolean(catalogCompanyRaw.taxationWithoutVAT) : null,
-    jurisdictions: catalogCompanyRaw.jurisdictions ? catalogCompanyRaw.jurisdictions.map(mapJurisdictionRaw) : [],
+    jurisdictions: Array.isArray(catalogCompanyRaw.jurisdictions) ? catalogCompanyRaw.jurisdictions.map(mapJurisdictionRaw) : [],
     interviewSteps: catalogCompanyRaw.interviewSteps ? Number(catalogCompanyRaw.interviewSteps) : null,
     calculationByAgreement: catalogCompanyRaw.calculationByAgreement ? Boolean(catalogCompanyRaw.calculationByAgreement) : null,
     billingPeriod: catalogCompanyRaw.billingPeriod ? Number(catalogCompanyRaw.billingPeriod) : null,
     deferredPaymentByAgreement: catalogCompanyRaw.deferredPaymentByAgreement ? Boolean(catalogCompanyRaw.deferredPaymentByAgreement) : null,
     defermentOfPayment: catalogCompanyRaw.defermentOfPayment ? Number(catalogCompanyRaw.defermentOfPayment) : null,
     mainLocation: catalogCompanyRaw.mainLocation ? mapLocationRaw(catalogCompanyRaw.mainLocation) : null,
-    locations: catalogCompanyRaw.locations ? catalogCompanyRaw.locations.map(mapLocationRaw) : [],
+    locations: Array.isArray(catalogCompanyRaw.locations) ? catalogCompanyRaw.locations.map(mapLocationRaw) : [],
     isVerified: catalogCompanyRaw.isVerified ? Boolean(catalogCompanyRaw.isVerified) : null,
     sellingSpecialistsCount: catalogCompanyRaw.sellingSpecialistsCount ? Number(catalogCompanyRaw.sellingSpecialistsCount) : null,
     searchingSpecialistsCount: catalogCompanyRaw.searchingSpecialistsCount ? Number(catalogCompanyRaw.searchingSpecialistsCount) : null,
@@ -94,34 +94,34 @@ export function mapCatalogCompanyRaw(catalogCompanyRaw: CatalogCompanyRaw): Cata
   };
 }
 
-export function mapCatalogCompany(catalogCompany: CatalogCompany): CatalogCompanyRaw {
+export function mapCatalogCompany(catalogCompany: Partial<CatalogCompany>): CatalogCompanyRaw {
   return {
-    id: catalogCompany.id ? String(catalogCompany.id) : null,
-    createdAt: catalogCompany.createdAt ? catalogCompany.createdAt.toISOString() : null,
-    logo: catalogCompany.logo ? String(catalogCompany.logo) : null,
-    title: catalogCompany.title ? String(catalogCompany.title) : null,
-    specialization: catalogCompany.title ? String(catalogCompany.title) : null,
-    website: catalogCompany.website ? String(catalogCompany.website) : null,
-    companySize: catalogCompany.companySize ? Number(catalogCompany.companySize) : null,
-    yearOfFoundation: catalogCompany.yearOfFoundation ? Number(catalogCompany.yearOfFoundation) : null,
-    description: catalogCompany.description ? String(catalogCompany.description) : null,
-    isSearchingSpecialists: catalogCompany.isSearchingSpecialists ? Boolean(catalogCompany.isSearchingSpecialists) : null,
+    id: catalogCompany?.id,
+    createdAt: catalogCompany.createdAt ? catalogCompany.createdAt.toISOString() : undefined,
+    logo: catalogCompany?.logo,
+    title: catalogCompany?.title,
+    specialization: catalogCompany?.specialization,
+    website: catalogCompany?.website,
+    companySize: catalogCompany?.companySize,
+    yearOfFoundation: catalogCompany?.yearOfFoundation,
+    description: catalogCompany?.description,
+    isSearchingSpecialists: catalogCompany?.isSearchingSpecialists,
     speakingLanguages: null,
-    isSellingSpecialists: catalogCompany.isSellingSpecialists ? Boolean(catalogCompany.isSellingSpecialists) : null,
+    isSellingSpecialists: catalogCompany?.isSellingSpecialists,
     currencies: null,
-    taxationWithVAT: catalogCompany.taxationWithVAT ? Boolean(catalogCompany.taxationWithVAT) : null,
-    taxationWithoutVAT: catalogCompany.taxationWithoutVAT ? Boolean(catalogCompany.taxationWithoutVAT) : null,
-    jurisdictions: catalogCompany.jurisdictions ? catalogCompany.jurisdictions.map(mapJurisdiction) : null,
-    interviewSteps: catalogCompany.interviewSteps ? Number(catalogCompany.interviewSteps) : null,
-    calculationByAgreement: catalogCompany.calculationByAgreement ? Boolean(catalogCompany.calculationByAgreement) : null,
-    billingPeriod: catalogCompany.billingPeriod ? Number(catalogCompany.billingPeriod) : null,
-    deferredPaymentByAgreement: catalogCompany.deferredPaymentByAgreement ? Boolean(catalogCompany.deferredPaymentByAgreement) : null,
-    defermentOfPayment: catalogCompany.defermentOfPayment ? Number(catalogCompany.defermentOfPayment) : null,
-    mainLocation: catalogCompany.mainLocation ? mapLocation(catalogCompany.mainLocation) : null,
-    locations: catalogCompany.locations ? catalogCompany.locations.map(mapLocation) : null,
-    isVerified: catalogCompany.isVerified ? Boolean(catalogCompany.isVerified) : null,
-    sellingSpecialistsCount: catalogCompany.sellingSpecialistsCount ? Number(catalogCompany.sellingSpecialistsCount) : null,
-    searchingSpecialistsCount: catalogCompany.searchingSpecialistsCount ? Number(catalogCompany.searchingSpecialistsCount) : null,
-    url: catalogCompany.url ? String(catalogCompany.url) : null,
+    taxationWithVAT: catalogCompany?.taxationWithVAT,
+    taxationWithoutVAT: catalogCompany?.taxationWithoutVAT,
+    jurisdictions: catalogCompany?.jurisdictions,
+    interviewSteps: catalogCompany?.interviewSteps,
+    calculationByAgreement: catalogCompany?.calculationByAgreement,
+    billingPeriod: catalogCompany?.billingPeriod,
+    deferredPaymentByAgreement: catalogCompany?.deferredPaymentByAgreement,
+    defermentOfPayment: catalogCompany?.defermentOfPayment,
+    mainLocation: catalogCompany.mainLocation ? mapLocation(catalogCompany.mainLocation) : undefined,
+    locations: catalogCompany.locations ? catalogCompany.locations.map(mapLocation) : undefined,
+    isVerified: catalogCompany?.isVerified,
+    sellingSpecialistsCount: catalogCompany?.sellingSpecialistsCount,
+    searchingSpecialistsCount: catalogCompany?.searchingSpecialistsCount,
+    url: catalogCompany?.url,
   };
 }
