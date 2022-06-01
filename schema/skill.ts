@@ -11,7 +11,7 @@ export type SkillRaw = {
 export function mapSkill(data: Partial<Skill>): SkillRaw {
   return {
     id: data.id,
-    title: data.title
+    title: data.title,
   };
 }
 
