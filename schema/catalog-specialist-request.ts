@@ -142,7 +142,7 @@ export function mapCatalogSpecialistRequest(data: Partial<CatalogSpecialistReque
     currencies: null,
     currency: null,
     id: data?.id,
-    jurisdictions: data.jurisdictions ? data.jurisdictions.map(mapJurisdiction) : [],
+    jurisdictions: data.jurisdictions ? data.jurisdictions.map(mapJurisdiction) : undefined,
     locations: null,
     skills: null,
     specialization: null,
