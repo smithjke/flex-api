@@ -10,18 +10,18 @@ export type JurisdictionRaw = {
   emoji: string;
 };
 
-export function mapJurisdictionRaw(jurisdictionRaw: JurisdictionRaw): Jurisdiction {
+export function mapJurisdictionRaw(dataRaw: JurisdictionRaw): Jurisdiction {
   return {
-    id: jurisdictionRaw.id ? String(jurisdictionRaw.id) : null,
-    title: jurisdictionRaw.title ? String(jurisdictionRaw.title) : null,
-    emoji: jurisdictionRaw.emoji ? String(jurisdictionRaw.emoji) : null,
+    id: dataRaw.id ? String(dataRaw.id) : null,
+    title: dataRaw.title ? String(dataRaw.title) : null,
+    emoji: dataRaw.emoji ? String(dataRaw.emoji) : null,
   };
 }
 
-export function mapJurisdiction(jurisdiction: Partial<Jurisdiction>): JurisdictionRaw {
+export function mapJurisdiction(data: Partial<Jurisdiction>): JurisdictionRaw {
   return {
-    id: jurisdiction?.id,
-    title: jurisdiction?.title,
-    emoji: jurisdiction?.emoji,
+    id: data?.id,
+    title: data?.title,
+    emoji: data?.emoji,
   };
 }

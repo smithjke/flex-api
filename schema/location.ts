@@ -14,22 +14,22 @@ export type LocationRaw = {
   phone: string;
 };
 
-export function mapLocationRaw(locationRaw: LocationRaw): Location {
+export function mapLocationRaw(dataRaw: LocationRaw): Location {
   return {
-    cityId: locationRaw.cityId ? String(locationRaw.cityId) : null,
-    cityTitle: locationRaw.cityTitle ? String(locationRaw.cityTitle) : null,
-    address: locationRaw.address ? String(locationRaw.address) : null,
-    email: locationRaw.email ? String(locationRaw.address) : null,
-    phone: locationRaw.phone ? String(locationRaw.phone) : null,
+    cityId: dataRaw.cityId ? String(dataRaw.cityId) : null,
+    cityTitle: dataRaw.cityTitle ? String(dataRaw.cityTitle) : null,
+    address: dataRaw.address ? String(dataRaw.address) : null,
+    email: dataRaw.email ? String(dataRaw.address) : null,
+    phone: dataRaw.phone ? String(dataRaw.phone) : null,
   };
 }
 
-export function mapLocation(location: Partial<Location>): LocationRaw {
+export function mapLocation(data: Partial<Location>): LocationRaw {
   return {
-    cityId: location?.cityId,
-    cityTitle: location?.cityTitle,
-    address: location?.address,
-    email: location?.email,
-    phone: location?.phone,
+    cityId: data?.cityId,
+    cityTitle: data?.cityTitle,
+    address: data?.address,
+    email: data?.email,
+    phone: data?.phone,
   };
 }
