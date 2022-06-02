@@ -1,5 +1,6 @@
 import { CatalogCompany, CatalogCompanyRaw, mapCatalogCompany, mapCatalogCompanyRaw } from './catalog-company';
-import { Jurisdiction, JurisdictionRaw, mapJurisdictionRaw } from './jurisdiction';
+import { Jurisdiction, JurisdictionRaw, mapJurisdictionRaw, mapJurisdiction } from './jurisdiction';
+import { Location, LocationRaw, mapLocationRaw, mapLocation } from './location';
 import { PlaceholderType } from './placeholder-type';
 
 export type CatalogSpecialist = {
@@ -14,7 +15,6 @@ export type CatalogSpecialist = {
   speakingLanguages: Array<PlaceholderType>;
   availableFrom: Date;
   workLoad: number;
-  isDeleted: boolean;
   isWFRemote: boolean;
   isWFInLocalOffice: boolean;
   isWFInAnyOffice: boolean;
@@ -33,7 +33,7 @@ export type CatalogSpecialist = {
   catalogCompany: CatalogCompany;
   generalSkills: Array<PlaceholderType>;
   availableNow: boolean;
-  location: PlaceholderType;
+  location: Location;
   country: PlaceholderType;
   citizenships: Array<PlaceholderType>;
   heightEducations: Array<PlaceholderType>;
@@ -57,7 +57,6 @@ export type CatalogSpecialistRaw = {
   speakingLanguages: Array<PlaceholderType>;
   availableFrom: string;
   workLoad: number;
-  isDeleted: boolean;
   isWFRemote: boolean;
   isWFInLocalOffice: boolean;
   isWFInAnyOffice: boolean;
@@ -76,7 +75,7 @@ export type CatalogSpecialistRaw = {
   catalogCompany: CatalogCompanyRaw;
   generalSkills: Array<PlaceholderType>;
   availableNow: boolean;
-  location: PlaceholderType;
+  location: LocationRaw;
   country: PlaceholderType;
   citizenships: Array<PlaceholderType>;
   hightEducations: Array<PlaceholderType>;
@@ -101,7 +100,6 @@ export function mapCatalogSpecialistRaw(dataRaw: CatalogSpecialistRaw): CatalogS
     speakingLanguages: null,
     availableFrom: dataRaw.availableFrom ? new Date(dataRaw.availableFrom) : null,
     workLoad: dataRaw.workLoad ? Number(dataRaw.workLoad) : null,
-    isDeleted: dataRaw.isDeleted ? Boolean(dataRaw.isDeleted) : null,
     isWFRemote: dataRaw.isWFRemote ? Boolean(dataRaw.isWFRemote) : null,
     isWFInLocalOffice: dataRaw.isWFInLocalOffice ? Boolean(dataRaw.isWFInLocalOffice) : null,
     isWFInAnyOffice: dataRaw.isWFInAnyOffice ? Boolean(dataRaw.isWFInAnyOffice) : null,
@@ -120,20 +118,20 @@ export function mapCatalogSpecialistRaw(dataRaw: CatalogSpecialistRaw): CatalogS
     catalogCompany: dataRaw.catalogCompany ? mapCatalogCompanyRaw(dataRaw.catalogCompany) : null,
     generalSkills: null,
     availableNow: dataRaw.availableNow ? Boolean(dataRaw.availableNow) : null,
-    location: null,
+    location: dataRaw.location ? mapLocationRaw(dataRaw.location) : null,
     country: null,
     citizenships: null,
     heightEducations: null,
     educations: null,
     workingExperiences: null,
     workingIndustries: null,
-    jurisdictions: Array.isArray(dataRaw.jurisdictions) ? dataRaw.jurisdictions.map(mapJurisdictionRaw) : null,
+    jurisdictions: Array.isArray(dataRaw.jurisdictions) ? dataRaw.jurisdictions.map(mapJurisdictionRaw) : [],
     keyWords: Array.isArray(dataRaw.keyWords) ? dataRaw.keyWords.map((el) => String(el)) : null,
     original: null,
   };
 }
 
-export function mapCatalogSpecialist(data: CatalogSpecialist): CatalogSpecialistRaw {
+export function mapCatalogSpecialist(data: Partial<CatalogSpecialist>): CatalogSpecialistRaw {
   return {
     innerId: data?.innerId,
     name: data?.name,
@@ -146,7 +144,6 @@ export function mapCatalogSpecialist(data: CatalogSpecialist): CatalogSpecialist
     speakingLanguages: null,
     availableFrom: data.availableFrom ? data.availableFrom.toISOString() : undefined,
     workLoad: data?.workLoad,
-    isDeleted: data?.isDeleted,
     isWFRemote: data?.isWFRemote,
     isWFInLocalOffice: data?.isWFInLocalOffice,
     isWFInAnyOffice: data?.isWFInAnyOffice,
@@ -165,14 +162,14 @@ export function mapCatalogSpecialist(data: CatalogSpecialist): CatalogSpecialist
     catalogCompany: data.catalogCompany ? mapCatalogCompany(data.catalogCompany) : undefined,
     generalSkills: null,
     availableNow: data?.availableNow,
-    location: null,
+    location: data.location ? mapLocation(data.location) : null,
     country: null,
     citizenships: null,
     hightEducations: null,
     educations: null,
     workingExperiences: null,
     workingIndustries: null,
-    jurisdictions: data.jurisdictions ? data.jurisdictions.map(mapJurisdictionRaw) : undefined,
+    jurisdictions: data.jurisdictions ? data.jurisdictions.map(mapJurisdiction) : undefined,
     keyWords: data?.keyWords,
     original: null,
   };
